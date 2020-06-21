@@ -44,7 +44,7 @@ class 	eigenfaces:
 			for i in range(nb_img):
 				new = moyenne + np.dot(weights[j, :i], eigenfaces[:, :i].T)
 				img_id = str(j)+"_"+str(i)
-				mpimg.imsave("img{:d}.{:d}.png".format(i, j), new.reshape(270,270))
+				mpimg.imsave("new_img/img{:d}.{:d}.png".format(i, j), new.reshape(270,270))
 
 
 

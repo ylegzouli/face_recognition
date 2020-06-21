@@ -24,10 +24,10 @@ class	get_img:
 			for x, y, w, h in face:
 				cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
 				cv2.putText(frame, "face: {:d}".format(nb), (x, y+h+20), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 2)
-#				self.save_img(x, y, w, h, frame, nb)
+				self.save_img(x, y, w, h, frame, nb)
 				nb=nb+1
-			if cv2.waitKey(1)&0xFF==ord('q'):
-				break
+#			if cv2.waitKey(1)&0xFF==ord('q'):
+#				break
 			cv2.imshow('vew', frame)
 		cap.release()
 		cv2.destroyAllWindows()
