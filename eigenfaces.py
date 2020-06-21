@@ -33,7 +33,7 @@ class 	eigenfaces:
 #		mpimg.imsave("img.png", moyenne.reshape(270, 270))
 		return (img, moyenne, len(png))
 	
-	def 	process(self):
+	def 	eigen_face(self):
 		img, moyenne, nb_img = self.mean_face(self)
 		phi = img - moyenne
 		eigenfaces, sigma, v = linalg.svd(phi.transpose(), full_matrices=False)
@@ -52,5 +52,5 @@ class 	eigenfaces:
 
 if __name__ == "__main__":
 	eigen = eigenfaces
-	eigen.process(eigen)
+	eigen.eigen_face(eigen)
 
