@@ -30,19 +30,19 @@ class 	eigenfaces:
 			i = i + 1
 		moyenne = np.mean(img, 0)
 #		print("moyenne="+str(moyenne))
-#		mpimg.imsave("img.png", moyenne.reshape(270, 270))
+#		mpimg.imsave("mean_face.png", moyenne.reshape(270, 270))
 		return (img, moyenne, len(png))
 	
 	def 	eigen_face(self):
 		img, moyenne, nb_img = self.mean_face(self)
 		phi = img - moyenne
-		eigenfaces, sigma, v = linalg.svd(phi.transpose(), full_matrices=False)
-		for i in range(eigenfaces.shape[1]):
-			mpimg.imsave("eigenfaces/img{:d}.png".format(i), eigenfaces[:,i].reshape(270,270))
-		weights = np.dot(phi, eigenfaces)
+		eigen, sigma, v = linalg.svd(phi.transpose(), full_matrices=False)
+		for i in range(eigen.shape[1]):
+			mpimg.imsave("eigenfaces/img{:d}.png".format(i), eigen[:,i].reshape(270,270))
+		weights = np.dot(phi, eigen)
 		for j in range(nb_img):
 			for i in range(nb_img):
-				new = moyenne + np.dot(weights[j, :i], eigenfaces[:, :i].T)
+				new = moyenne + np.dot(weights[j, :i], eigen[:, :i].T)
 				img_id = str(j)+"_"+str(i)
 				mpimg.imsave("new_img/img{:d}.{:d}.png".format(i, j), new.reshape(270,270))
 
