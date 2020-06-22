@@ -46,6 +46,9 @@ class 	eigenfaces:
 				img_id = str(j)+"_"+str(i)
 				mpimg.imsave("new_img/img{:d}.{:d}.png".format(i, j), new.reshape(270,270))
 
+#	def		tester(self)
+#		face = self.rgb_to_grey(imread("img.png", True))
+#		face = np.reshape(face, 270 * 270)
 
 
 #-------------------------------------------------------------------
