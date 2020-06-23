@@ -45,10 +45,18 @@ class 	Eigenfaces:
 			for i in range(nb_img):
 				new = moyenne + np.dot(weights[j, :i], eigen[:, :i].T)
 #				mpimg.imsave("new_img/img{:d}.{:d}.png".format(i, j), new.reshape(270,270))
-		return (eigen, moyenne, weights)
+		return (eigen, moyenne, weights, img)
+
+	def		affichage(self, face, img):
+		plt.figure()
+		plt.subplot(2, 1, 1)
+		plt.imshow(face.reshape(270, 270))
+		plt.subplot(2, 1, 2)
+		plt.imshow(img.reshape(270, 270))
+		plt.show()
 
 	def		tester(self):
-		eigen, moyenne, weight = self.eigen_face(self)
+		eigen, moyenne, weight, img = self.eigen_face(self)
 		face = self.rgb_to_grey(imread("save_img/img.png", True))
 		face = np.reshape(face, 270 * 270)
 		phi = face - moyenne
@@ -56,11 +64,13 @@ class 	Eigenfaces:
 		dist = np.min((weight - weight2)**2, axis=1)
 		indice = np.argmin(dist)
 		mindist=np.sqrt(dist[indice])
-		print(mindist)
-		if (mindist < 40):
+		percent = (200 - mindist) / 2
+		print("{:d}%".format(int(percent)))
+		if (percent > 80):
 			print("OK")
 		else:
 			print("NOT OK")
+		self.affichage(self, face, img[0])
 
 #-------------------------------------------------------------------
 

@@ -12,11 +12,8 @@ class	get_img:
 		img = frame[y+2:y+h-1, x+2:x+w-1]
 		res = cv2.resize(img, dsize=(270, 270), interpolation=cv2.INTER_CUBIC)
 		res2 = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
-#		cv2.imshow('image',res2)
 		cv2.imwrite("save_img/img.png", res2)
-#		mpimg.imsave("save_img/img.png", res)
 		print("img{:d}.png: [SAVE]".format(n))
-		eigen.tester(eigen)
 	
 	def		process(self, eigen):
 		face_cascade2=cv2.CascadeClassifier("./haarcascade/haarcascade_frontalface_alt2.xml")
@@ -32,13 +29,14 @@ class	get_img:
 				cv2.putText(frame, "face: {:d}".format(nb), (x, y+h+20), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 2)
 				if cv2.waitKey(1)&0xFF==ord('s'):
 					self.save_img(x, y, w, h, frame, nb, eigen)
-#					exit = 0
+					exit = 0
 				nb=nb+1
-			if cv2.waitKey(1)&0xFF==ord('q'):
-				break
+#			if cv2.waitKey(1)&0xFF==ord('q'):
+#				break
 			cv2.imshow('vew', frame)
 		cap.release()
 		cv2.destroyAllWindows()
+		eigen.tester(eigen)
 
 #-------------------------------------------------------------------
 
